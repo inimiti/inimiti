@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - INIMITI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-content-wrapper">
+            <a href="index.html" class="header-logo-link">
+                <img src="images/logo-header.svg" alt="INIMITI" class="header-logo">
+            </a>
+            <span class="header-page-title-white">Contact</span>
+            <a href="contact.html" class="header-contact-btn">Contact</a>
+        </div>
+    </header>
+
+    <div class="page-contact"></div>
+
+    <div class="scroll-spacer"></div>
+
+    <div class="contact-container">
+        <h1 class="contact-title">Contactez-nous</h1>
+        <p class="contact-text">
+            Pour toute demande d'information, de devis ou de collaboration, n'hésitez pas à nous contacter via le
+            formulaire ci-dessous.
+            Notre équipe se fera un plaisir de vous répondre dans les plus brefs délais afin de vous accompagner dans
+            vos projets.
+            Que ce soit pour un événement privé, une entreprise ou une institution, nous sommes à votre écoute pour
+            réaliser vos ambitions musicales.
+            Remplissez les champs ci-dessous et laissez-nous vous guider vers l'excellence.
+            À très bientôt !
+        </p>
+
+        <form class="contact-form" action="#" method="post">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="entreprise">Entreprise</label>
+                <input type="text" id="entreprise" name="entreprise">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn-contact">Envoyer</button>
+        </form>
+    </div>
+
+    <div class="scroll-spacer"></div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Inimiti. Tous droits réservés.</p>
+        <nav class="footer-links">
+            <a href="mentions-legales.html">Mentions légales</a>
+            <a href="politique-confidentialite.html">Politique de confidentialité</a>
+        </nav>
+    </footer>
+
+    <div
+        style="background-image: url(https://static.tildacdn.com/tild3265-3261-4333-a361-353739633737/noise.gif); background-size: 70px; opacity: calc(10 / 100); height: 100%; width: 100%; position: fixed; top: 0; left: 0; z-index: 1000; pointer-events: none;">
+    </div>
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="main.js" defer></script>
+</body>
+
+</html>

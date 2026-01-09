@@ -1,0 +1,1393 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+/* ---- Mise en page ---- */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* Fix for composer page layout collapse with Lenis */
+html.lenis body.composer-page {
+  height: 100vh;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #111;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+
+
+/* ---- Footer ---- */
+
+.footer {
+  position: relative;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9em;
+  z-index: 10;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #aaa;
+}
+
+.footer-home {
+  position: fixed;
+}
+
+
+
+/* ---- Footer ---- */
+
+
+.fade-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 110vw;
+  height: 110vh;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.fade-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: fade 12s infinite;
+  z-index: 1;
+  /* mix-blend-mode: hard-light; */
+}
+
+.fade-container img:first-child {
+  animation-delay: 0s;
+}
+
+.fade-container img:last-child {
+  animation-delay: 6s;
+}
+
+/* ---- Animation du fondu ---- */
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.menu-container {
+  height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 6rem 9rem;
+  gap: 24px;
+  z-index: 10;
+}
+
+.logo {
+  width: 240px;
+  max-width: 100%;
+  margin-bottom: 2%;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.menu-links a {
+  position: relative;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  font-size: 1.6em;
+  line-height: 1.3cm;
+  color: white;
+  text-decoration: none;
+  padding: 0 5px;
+  transition: color 0.3s ease;
+}
+
+.menu-links a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: white;
+  z-index: -1;
+  transition: width 0.3s ease;
+}
+
+.menu-links a:hover {
+  color: black;
+  /* Invert text color for visibility */
+}
+
+.menu-links a:hover::before {
+  width: 100%;
+}
+
+
+/* Header Styles */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 22px;
+  z-index: 1000;
+}
+
+.header-content-wrapper {
+  display: flex;
+  align-items: baseline;
+  width: 84%;
+  gap: 20px;
+}
+
+.header-logo {
+  height: 70px;
+  width: auto;
+  display: block;
+}
+
+.header-page-title-white {
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  font-size: 1em;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-left: -10px;
+}
+
+.header-page-title-black {
+  font-family: "Space Grotesk", sans-serif;
+  color: black;
+  font-size: 1em;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-left: -10px;
+}
+
+.header-contact-btn {
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  /* Default to white, overridden by page specifics if needed */
+  font-size: 1em;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-left: auto;
+  /* Pushes to the right */
+  margin-right: 0;
+  /* Aligns with left padding */
+  transition: opacity 0.3s ease;
+}
+
+.header-contact-btn:hover {
+  opacity: 0.7;
+}
+
+/* Specific color overrides based on background */
+body.programmes .header-contact-btn {
+  color: black;
+}
+
+.bg-header {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.scroll-spacer {
+  height: 5vh;
+  pointer-events: none;
+}
+
+.scroll-spacer-wide {
+  height: 80vh;
+  pointer-events: none;
+}
+
+/* qui-sommes-nous */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem;
+  max-width: 45vw;
+  margin: 0 auto;
+}
+
+.page-qui-sommes-nous {
+  height: 200vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("images/fond1.gif");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container-a {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 50px 0;
+  z-index: 10;
+}
+
+.title {
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  font-size: 4em;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-block: 20px;
+}
+
+.text {
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+
+  line-height: 1.6em;
+}
+
+.team-section {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.team-member {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.team-member img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.member-name {
+  font-family: "Space Mono", monospace;
+  color: #77bee8;
+  font-size: 1.5em;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.member-bio {
+  font-family: "Space Mono", monospace;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5em;
+  margin: 0;
+}
+
+/* directeurs artistiques */
+
+
+
+.da-section {
+  display: grid;
+  gap: 40px;
+  margin-bottom: 80px;
+  z-index: 10;
+}
+
+.da-background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.da-bg-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.da-bg-item.active {
+  opacity: 1;
+}
+
+.da-member {
+  max-width: 1200px;
+  margin: 9vw auto;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.da-member-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+}
+
+.da-member-name {
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  font-size: 3.2em;
+  font-weight: 400;
+  margin: 0;
+}
+
+.da-member-role {
+  font-family: "Space Grotesk", sans-serif;
+  color: #77bee8;
+  font-size: 1.7em;
+  font-weight: 400;
+  line-height: 1.5em;
+  margin-bottom: 20px;
+  margin-top: -8px;
+}
+
+.da-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 5rem 10rem;
+}
+
+.button-da {
+  display: flex;
+  justify-content: right;
+  margin-top: 20px;
+}
+
+.button-da a {
+  font-family: "Space Mono", monospace;
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 36px;
+  border: 1px solid #77bee8;
+  color: #77bee8;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.button-da a:hover {
+  background: #77bee8;
+  color: #ffffff;
+}
+
+
+/* ---------PROGRAMMES--------- */
+
+
+body.programmes {
+  margin: 0;
+  background: #ffffff;
+  color: rgb(11, 11, 11);
+}
+
+
+/* Wrapper principal */
+.slides-container {
+  display: grid;
+  grid-template-areas: "slide";
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Slide de base (caché) */
+.program-slide {
+  grid-area: slide;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+
+  /* État inactif */
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  visibility: hidden;
+
+  transition: opacity 0.75s ease, transform 0.75s ease, visibility 0.75s ease;
+}
+
+
+/* Slide actif (visible) */
+.program-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  z-index: 2;
+  visibility: visible;
+  position: relative;
+}
+
+/* Images de fond spécifiques */
+.program-slide:nth-child(1) {
+  background-image: url("images/boheme3.gif");
+  background-color: white;
+}
+
+.program-slide:nth-child(2) {
+  background-image: url("images/vin.gif");
+  background-color: white;
+}
+
+.program-slide:nth-child(3) {
+  background-image: url("images/capriccio.gif");
+  background-color: rgb(255, 255, 255);
+}
+
+
+.program-image {
+  height: 45vh;
+  overflow: hidden;
+}
+
+.program-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.program-content {
+  position: relative;
+  margin-top: auto;
+  padding: 4rem 13rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.program-content h1 {
+  font-weight: 450;
+  font-size: 3.5rem;
+  margin: 0;
+}
+
+.intro {
+  font-size: 1.3em;
+  font-weight: 200;
+  margin: 0;
+}
+
+.infos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 1.8em 0;
+}
+
+.infos h4 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1em;
+  border: 1px solid var(--accent);
+  padding: 20px;
+}
+
+.program-slide .btn {
+  font-family: "Space Mono", monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  width: 300px;
+  padding: 7px 0;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: transparent;
+  cursor: pointer;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+
+.program-slide .btn {
+  margin-top: 0;
+}
+
+.btn.btn-contact {
+  margin-left: auto;
+  color: white;
+  background: var(--accent);
+}
+
+.btn.btn-next {
+  color: white;
+  background: var(--accent);
+}
+
+.program-slide .btn:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+.program-content-wrapper {
+  position: relative;
+}
+
+
+/* --------- NOS RÉALISATIONS --------- */
+
+body.realisations {
+  margin: 0;
+  background: #111;
+  color: white;
+  overflow-x: hidden;
+}
+
+.page-realisations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 110vh;
+  background-image: url("images/alto-rose-trans.gif");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  padding: 15vh 0 10vh 0;
+}
+
+.project-row {
+  display: flex;
+  flex-direction: row;
+  height: 50vh;
+  width: 70%;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+}
+
+.project-info {
+  width: 30%;
+  min-width: 300px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-sizing: border-box;
+  z-index: 2;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-info h2 {
+  font-family: "Space Grotesk", sans-serif;
+  color: white;
+  /* Explicitly white */
+  font-size: 2.5rem;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.project-link {
+  color: white;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.project-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.project-info h3 {
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--accent, #77bee8);
+  /* Use a default accent color */
+  font-size: 1.2rem;
+  margin: 0 0 1.5rem 0;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.project-info p {
+  font-family: "Space Grotesk", sans-serif;
+  color: #ddd;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 400px;
+}
+
+.project-carousel {
+  flex: 1;
+  width: 70%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Removed drag cursor styles */
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  width: max-content;
+  user-select: none;
+  will-change: transform;
+}
+
+.carousel-item {
+  height: 100%;
+  width: auto;
+  flex-shrink: 0;
+  padding-right: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-item img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+  pointer-events: none;
+  /* Prevents default image drag behavior */
+}
+
+.carousel-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  font-weight: 100;
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1;
+}
+
+.close-lightbox:hover {
+  transform: rotate(90deg);
+  color: #77bee8;
+}
+
+/* --------- COMPOSEZ VOTRE CONCERT --------- */
+
+.composer-page {
+  background-image: url("images/chef-bleu-b.gif");
+  background-size: cover;
+  background-position: top;
+  color: white;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+.composer-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.central-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 45vh;
+  height: 45vh;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ccc;
+  padding: 48px;
+}
+
+.central-logo svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Floating Dynamic Text on Central Logo */
+.logo-floating-text {
+  position: absolute;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  z-index: 20;
+  pointer-events: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.logo-floating-text.top-left {
+  top: 0;
+  left: 0;
+  transform: translate(0, -150%);
+}
+
+.logo-floating-text.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: translate(0, 150%);
+}
+
+/* Ensure SVG content is visible against dark bg */
+.cls-1 {
+  fill: #333;
+  /* Dark grey by default, lighter than bg */
+  transition: fill 0.3s ease;
+}
+
+
+.config-column {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-45%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 10;
+}
+
+.left-column {
+  left: 10%;
+}
+
+.right-column {
+  right: 10%;
+}
+
+.config-block {
+  /* Removed absolute positioning */
+  width: 350px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  /* Ensure relative for z-index context if needed */
+}
+
+.config-block:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.block-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  color: white;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.block-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.config-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ccc;
+  padding: 3px 25px;
+  text-align: left;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.config-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: white;
+}
+
+.config-btn.active {
+  background: white;
+  color: black;
+  border-color: white;
+}
+
+/* Form Styles */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input,
+.form-textarea {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.form-textarea {
+  resize: none;
+  height: 80px;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent, #77bee8);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.submit-btn {
+  background: var(--accent, #77bee8);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* --------- CONTACT --------- */
+
+.page-contact {
+  height: 110vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("images/fond1.gif");
+  background-size: cover;
+  background-position: bottom;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.contact-container {
+  position: relative;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 3rem 4rem;
+  max-width: 800px;
+  margin: 10vh auto 5vh;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.contact-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.contact-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  text-align: center;
+  max-width: 700px;
+}
+
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.form-group label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group textarea {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 12px;
+  color: white;
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent, #77bee8);
+}
+
+.submit-btn-contact {
+  font-family: "Space Mono", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: center;
+  margin-top: 1rem;
+  letter-spacing: 1px;
+}
+
+.submit-btn-contact:hover {
+  background-color: white;
+  color: black;
+}
+
+
+/* --------- RESPONSIVE 1024PX --------- */
+
+@media screen and (max-width: 1024px) {
+  .composer-page {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .composer-container {
+    height: auto;
+    padding-top: 230px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .central-logo {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 300px;
+    height: 300px;
+    margin: 20px 0;
+  }
+
+  .config-column {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
+    align-items: center;
+  }
+
+  .config-block {
+    width: 80%;
+    max-width: 400px;
+  }
+
+  .program-content {
+    padding: 3rem 5rem;
+  }
+
+  .program-content h1 {
+    font-size: 3rem;
+  }
+
+  .buttons-container {
+    justify-content: flex-start;
+  }
+
+  .btn.btn-contact {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .projects-container {
+    padding: 18vh 0 12vh 0;
+  }
+
+  .project-row {
+    flex-direction: column;
+    margin-top: 4vh;
+  }
+
+  .project-info {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+  }
+
+  .project-carousel {
+    width: 100%;
+    height: 50vh;
+  }
+}
+
+/* --------- RESPONSIVE 768PX --------- */
+
+@media screen and (max-width: 768px) {
+
+  .site-header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .menu-container {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-home {
+    position: relative;
+  }
+
+  .logo {
+    margin: 0 auto;
+    width: 240px;
+    padding-bottom: 5vh;
+  }
+
+  .menu-links {
+    align-items: center;
+  }
+
+  .slides-container {
+    min-height: auto;
+  }
+
+  .program-slide {
+    min-height: auto;
+    position: relative;
+    display: block;
+    height: 27%;
+    margin-top: 16vh;
+  }
+
+  .program-slide.active {
+    transform: none;
+  }
+
+  .program-content {
+    padding: 2rem 1.5rem;
+    margin-top: 35vh;
+    transform: none;
+    top: 0;
+  }
+
+  .program-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .intro {
+    font-size: 1.1em;
+  }
+
+  .infos {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 30px 0;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .program-slide .btn {
+    width: 100%;
+  }
+
+  .btn.btn-contact {
+    margin-left: 0;
+  }
+
+  /* Ajustement background sur mobile si besoin */
+  .program-slide {
+    background-position: center;
+  }
+
+  .contact-container {
+    padding: 2rem;
+    width: 90%;
+    margin-top: 15vh;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Carousel specific mobile adjustments */
+  .project-carousel {
+    height: 35vh;
+    /* Reduced height for mobile */
+  }
+
+  .carousel-item img {
+    object-fit: contain;
+    /* Ensure full visibility */
+    width: auto;
+    /* Let width adjust */
+    max-width: 100vw;
+    /* Cap width if needed */
+  }
+
+  .central-logo {
+    margin: 0;
+  }
+
+  .logo-floating-text {
+    display: none;
+  }
+
+  .block-title {
+    font-size: 1.5rem;
+  }
+
+  .block-desc {
+    display: none;
+  }
+
+  .config-block {
+    padding: 3px;
+  }
+
+  .config-btn {
+    font-size: 0.8rem
+  }
+
+  .right-column {
+    margin-top: 5vh;
+  }
+
+  html.lenis body.composer-page {
+    height: auto;
+  }
+
+  .container {
+    max-width: 70vw;
+  }
+
+  .da-content {
+    padding: 5rem 5rem;
+  }
+
+  .team-section {
+    flex-direction: column;
+    gap: 5rem;
+  }
+}
