@@ -274,14 +274,6 @@ body.programmes .header-contact-btn {
 
 /* qui-sommes-nous */
 
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  padding: 2rem;
-  max-width: 45vw;
-  margin: 0 auto;
-}
 
 .page-qui-sommes-nous {
   height: 200vh;
@@ -295,6 +287,15 @@ body.programmes .header-contact-btn {
   background-repeat: no-repeat;
   z-index: 0;
   pointer-events: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem;
+  max-width: 45vw;
+  margin: 0 auto;
 }
 
 .container-a {
@@ -1153,9 +1154,47 @@ body.realisations {
 }
 
 
+
 /* --------- RESPONSIVE 1024PX --------- */
 
 @media screen and (max-width: 1024px) {
+
+  /* Site Header */
+  .header-content-wrapper {
+    width: 90%;
+  }
+
+  /* Index.html */
+  .menu {
+    padding: 6rem 4rem;
+  }
+
+  /* Qui sommes-nous ? */
+  .container {
+    max-width: 80vw;
+  }
+
+  /* Directeurs artistiques */
+  .da-member {
+    gap: 40px;
+    padding: 0 5vw;
+  }
+
+  /* Programmes */
+  .program-content {
+    padding: 3rem 5rem;
+  }
+
+  .program-content h1 {
+    font-size: 3rem;
+  }
+
+  /* Nos Réalisations */
+  .project-row {
+    width: 90%;
+  }
+
+  /* Composez votre événement */
   .composer-page {
     overflow-y: auto;
     height: auto;
@@ -1163,7 +1202,7 @@ body.realisations {
 
   .composer-container {
     height: auto;
-    padding-top: 230px;
+    padding-top: 150px;
     padding-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -1176,8 +1215,8 @@ body.realisations {
     top: 0;
     left: 0;
     transform: none;
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     margin: 20px 0;
   }
 
@@ -1189,50 +1228,13 @@ body.realisations {
     transform: none;
     width: 100%;
     align-items: center;
+    gap: 30px;
   }
 
-  .config-block {
-    width: 80%;
-    max-width: 400px;
-  }
-
-  .program-content {
-    padding: 3rem 5rem;
-  }
-
-  .program-content h1 {
-    font-size: 3rem;
-  }
-
-  .buttons-container {
-    justify-content: flex-start;
-  }
-
-  .btn.btn-contact {
-    margin-left: 0;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .projects-container {
-    padding: 18vh 0 12vh 0;
-  }
-
-  .project-row {
-    flex-direction: column;
-    margin-top: 4vh;
-  }
-
-  .project-info {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-  }
-
-  .project-carousel {
-    width: 100%;
-    height: 50vh;
+  /* Contact */
+  .contact-container {
+    width: 85%;
+    padding: 3rem 2rem;
   }
 }
 
@@ -1240,154 +1242,225 @@ body.realisations {
 
 @media screen and (max-width: 768px) {
 
+  /* Global */
   .site-header {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    padding-top: 30px;
   }
 
-  .menu-container {
+  .header-logo {
+    height: 50px;
+  }
+
+  .header-page-title-white,
+  .header-page-title-black {
+    font-size: 0.9em;
+  }
+
+  /* Index.html */
+  .menu {
+    padding: 4rem 2rem;
     align-items: center;
     justify-content: center;
-  }
-
-  .footer-home {
-    position: relative;
-  }
-
-  .logo {
-    margin: 0 auto;
-    width: 240px;
-    padding-bottom: 5vh;
+    height: 100vh;
+    text-align: center;
   }
 
   .menu-links {
     align-items: center;
   }
 
-  .slides-container {
-    min-height: auto;
+  .menu-links a {
+    font-size: 1.4em;
+    line-height: 1.1cm;
   }
 
-  .program-slide {
-    min-height: auto;
-    position: relative;
-    display: block;
-    height: 27%;
-    margin-top: 16vh;
+  /* Qui sommes-nous ? */
+  .container {
+    max-width: 90vw;
+    gap: 2rem;
   }
 
-  .program-slide.active {
-    transform: none;
+  .title {
+    font-size: 3em;
   }
 
+  .team-section {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Directeurs artistiques */
+  .da-member {
+    flex-direction: column;
+    gap: 20px;
+    margin: 15vw auto;
+    backdrop-filter: none;
+    background: transparent;
+  }
+
+  .da-content {
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+  }
+
+  .da-member-name {
+    font-size: 2.5em;
+  }
+
+  /* Programmes */
   .program-content {
-    padding: 2rem 1.5rem;
-    margin-top: 35vh;
-    transform: none;
-    top: 0;
+    padding: 2rem;
   }
 
   .program-content h1 {
     font-size: 2.5rem;
   }
 
-  .intro {
-    font-size: 1.1em;
-  }
-
   .infos {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    margin: 30px 0;
-  }
-
-  .buttons-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 15px;
-  }
-
-  .program-slide .btn {
-    width: 100%;
+    gap: 1rem;
   }
 
   .btn.btn-contact {
     margin-left: 0;
   }
 
-  /* Ajustement background sur mobile si besoin */
-  .program-slide {
-    background-position: center;
+  /* Nos Réalisations */
+  .project-row {
+    flex-direction: column;
+    height: auto;
+    width: 95%;
   }
 
-  .contact-container {
-    padding: 2rem;
+  .project-info {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .project-carousel {
+    height: 40vh;
+    width: 100%;
+  }
+
+  /* Composez votre événement */
+  .central-logo {
+    width: 250px;
+    height: 250px;
+  }
+
+  .config-block {
     width: 90%;
-    margin-top: 15vh;
+    max-width: 350px;
+  }
+
+  /* Contact */
+  .contact-title {
+    font-size: 2.2rem;
   }
 
   .form-row {
     flex-direction: column;
-    gap: 1.5rem;
+  }
+}
+
+/* --------- RESPONSIVE 480PX --------- */
+
+@media screen and (max-width: 480px) {
+
+  /* Global */
+  .header-page-title-white,
+  .header-page-title-black {
+    display: none;
+    /* Hide page title to keep space for logo and contact */
   }
 
-  /* Carousel specific mobile adjustments */
+  .header-contact-btn {
+    font-size: 0.8em;
+  }
+
+  /* Index.html */
+  .logo {
+    width: 180px;
+  }
+
+  .menu-links a {
+    font-size: 1.2em;
+  }
+
+  /* Qui sommes-nous ? */
+  .title {
+    font-size: 2.2em;
+  }
+
+  .text {
+    font-size: 0.95em;
+  }
+
+  /* Directeurs artistiques */
+  .da-member-name {
+    font-size: 2em;
+  }
+
+  .button-da a {
+    font-size: 1em;
+    padding: 4px 20px;
+  }
+
+  /* Programmes */
+  .program-content h1 {
+    font-size: 2rem;
+  }
+
+  .intro {
+    font-size: 1em;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .program-slide .btn {
+    width: 100%;
+  }
+
+  /* Nos Réalisations */
+  .project-info h2 {
+    font-size: 1.8rem;
+  }
+
   .project-carousel {
-    height: 35vh;
-    /* Reduced height for mobile */
+    height: 30vh;
   }
 
-  .carousel-item img {
-    object-fit: contain;
-    /* Ensure full visibility */
-    width: auto;
-    /* Let width adjust */
-    max-width: 100vw;
-    /* Cap width if needed */
-  }
-
-  .central-logo {
-    margin: 0;
-  }
-
+  /* Composez votre événement */
   .logo-floating-text {
     display: none;
   }
 
+  .central-logo {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+  }
+
   .block-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
-  .block-desc {
-    display: none;
+  /* Contact */
+  .contact-container {
+    padding: 2rem 1rem;
+    margin-top: 15vh;
   }
 
-  .config-block {
-    padding: 3px;
+  .contact-title {
+    font-size: 1.8rem;
   }
 
-  .config-btn {
-    font-size: 0.8rem
-  }
-
-  .right-column {
-    margin-top: 5vh;
-  }
-
-  html.lenis body.composer-page {
-    height: auto;
-  }
-
-  .container {
-    max-width: 70vw;
-  }
-
-  .da-content {
-    padding: 5rem 5rem;
-  }
-
-  .team-section {
-    flex-direction: column;
-    gap: 5rem;
+  .contact-text {
+    font-size: 0.9em;
   }
 }
