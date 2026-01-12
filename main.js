@@ -222,6 +222,48 @@ if (document.body.classList.contains("composer-page")) {
         const buttons = groupEl.querySelectorAll('.config-btn');
         const svgGroup = document.getElementById('svg-' + section);
 
+        // Mobile Carousel Navigation
+        const container = groupEl.closest('.mobile-selector-container');
+        if (container) {
+            const prevBtn = container.querySelector('.prev');
+            const nextBtn = container.querySelector('.next');
+            let currentIndex = 0;
+
+            const updateCarousel = (index) => {
+                // Bounds check - Clamp instead of loop
+                if (index < 0) index = 0;
+                if (index >= buttons.length) index = buttons.length - 1;
+                currentIndex = index;
+
+                // Update arrows visual state
+                if (prevBtn) {
+                    prevBtn.style.opacity = currentIndex === 0 ? "0.3" : "1";
+                    prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+                }
+                if (nextBtn) {
+                    nextBtn.style.opacity = currentIndex === buttons.length - 1 ? "0.3" : "1";
+                    nextBtn.style.pointerEvents = currentIndex === buttons.length - 1 ? "none" : "auto";
+                }
+
+                // Animate buttons
+                buttons.forEach(btn => {
+                    btn.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    btn.classList.remove('active');
+                });
+
+                // Trigger button click to update SVG and texts
+                buttons[currentIndex].click();
+            };
+
+            if (prevBtn) prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
+            if (nextBtn) nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
+
+            // Initial state: activate first button if none active
+            if (!groupEl.querySelector('.active')) {
+                updateCarousel(0);
+            }
+        }
+
         buttons.forEach((btn, index) => {
             btn.addEventListener('click', () => {
                 // 1. Manage active class
@@ -306,5 +348,31 @@ if (document.body.classList.contains("realisations")) {
 
         // Start the loop for this slider
         animate();
+
+        // Touch Interaction for Mobile
+        let isTouching = false;
+        let startX = 0;
+        let startScroll = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            isTouching = true;
+            startX = e.touches[0].pageX;
+            startScroll = targetScroll;
+        }, { passive: true });
+
+        slider.addEventListener('touchmove', (e) => {
+            if (!isTouching) return;
+            const x = e.touches[0].pageX;
+            const walk = (startX - x) * 1.5; // Factor to adjust swipe sensitivity
+            targetScroll = startScroll + walk;
+        }, { passive: true });
+
+        slider.addEventListener('touchend', () => {
+            isTouching = false;
+        });
+
+        slider.addEventListener('touchcancel', () => {
+            isTouching = false;
+        });
     });
 }
