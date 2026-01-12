@@ -7,6 +7,10 @@ html.lenis body {
   height: auto;
 }
 
+p {
+  margin: 0;
+}
+
 /* Fix for composer page layout collapse with Lenis */
 html.lenis body.composer-page {
   height: 100vh;
@@ -200,61 +204,99 @@ body {
   padding-top: 50px;
   padding-bottom: 22px;
   z-index: 1000;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.header-content-wrapper {
+.header-hidden {
+  transform: translateY(-100%);
+}
+
+.mobile-only {
+  display: none !important;
+}
+
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.header-logo-mobile {
+  display: none;
+}
+
+.hamburger-btn span {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* Specific burger color for black header pages */
+body.programmes .hamburger-btn span {
+  background-color: black;
+}
+
+/* Hamburger animation when active */
+.hamburger-btn.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+}
+
+/* Mobile Nav Overlay */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #111;
+  z-index: 999;
   display: flex;
-  align-items: baseline;
-  width: 84%;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.header-logo {
-  height: 70px;
-  width: auto;
-  display: block;
+.mobile-nav.active {
+  transform: translateY(0);
 }
 
-.header-page-title-white {
-  font-family: "Space Grotesk", sans-serif;
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.mobile-nav-links a {
   color: white;
-  font-size: 1em;
-  font-weight: 300;
-  text-transform: uppercase;
-  margin-left: -10px;
-}
-
-.header-page-title-black {
-  font-family: "Space Grotesk", sans-serif;
-  color: black;
-  font-size: 1em;
-  font-weight: 300;
-  text-transform: uppercase;
-  margin-left: -10px;
-}
-
-.header-contact-btn {
-  font-family: "Space Grotesk", sans-serif;
-  color: white;
-  /* Default to white, overridden by page specifics if needed */
-  font-size: 1em;
-  font-weight: 300;
-  text-transform: uppercase;
   text-decoration: none;
-  margin-left: auto;
-  /* Pushes to the right */
-  margin-right: 0;
-  /* Aligns with left padding */
-  transition: opacity 0.3s ease;
+  font-size: 1rem;
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 5px 19px;
 }
 
-.header-contact-btn:hover {
-  opacity: 0.7;
-}
-
-/* Specific color overrides based on background */
-body.programmes .header-contact-btn {
-  color: black;
+body.menu-open {
+  overflow: hidden;
 }
 
 .bg-header {
@@ -353,15 +395,18 @@ body.programmes .header-contact-btn {
 }
 
 .member-bio {
-  font-family: "Space Mono", monospace;
+  font-family: "Space Grotesk", sans-serif;
   color: white;
   font-size: 1em;
   font-weight: 400;
-  line-height: 1.5em;
+  line-height: 1.6em;
   margin: 0;
 }
 
 /* directeurs artistiques */
+.da-portrait-mobile {
+  display: none;
+}
 
 
 
@@ -422,6 +467,7 @@ body.programmes .header-contact-btn {
   color: white;
   font-size: 3.2em;
   font-weight: 400;
+  padding-bottom: 8px;
   margin: 0;
 }
 
@@ -433,6 +479,7 @@ body.programmes .header-contact-btn {
   line-height: 1.5em;
   margin-bottom: 20px;
   margin-top: -8px;
+  line-height: 26px;
 }
 
 .da-content {
@@ -1243,25 +1290,65 @@ body.realisations {
 @media screen and (max-width: 768px) {
 
   /* Global */
+  .mobile-only {
+    display: flex !important;
+  }
+
   .site-header {
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    justify-content: center;
+  }
+
+  .header-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
   }
 
   .header-logo {
-    height: 50px;
+    display: none;
+  }
+
+  .header-logo-mobile {
+    display: block;
+    height: 16px;
+    width: auto;
   }
 
   .header-page-title-white,
   .header-page-title-black {
-    font-size: 0.9em;
+    display: none;
   }
 
-  /* Index.html */
-  .menu {
-    padding: 4rem 2rem;
+  .header-contact-btn {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .hamburger-btn.active span {
+    background-color: white !important;
+    /* Force white in overlay */
+  }
+
+  /* Index.html Mobile Adaptation */
+  .menu-container {
+    height: auto;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    padding-top: 30vh;
+  }
+
+  .menu {
+    padding: 2rem;
+    align-items: center;
     text-align: center;
   }
 
@@ -1380,13 +1467,36 @@ body.realisations {
     font-size: 0.8em;
   }
 
+  .menu-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 8rem 0;
+  }
+
+  .menu {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+
   /* Index.html */
   .logo {
-    width: 180px;
+    width: 140px;
+  }
+
+  .menu-links {
+    gap: 12px;
+    align-items: center;
   }
 
   .menu-links a {
     font-size: 1.2em;
+  }
+
+  .footer-home {
+    position: relative;
   }
 
   /* Qui sommes-nous ? */
@@ -1404,13 +1514,73 @@ body.realisations {
   }
 
   .button-da a {
-    font-size: 1em;
+    font-size: 0.9em;
     padding: 4px 20px;
   }
 
+  /* Directeurs artistiques, Composer & Qui sommes-nous - Mobile Layout */
+  body:has(.da-section),
+  body.composer-page,
+  body.qui-sommes-page {
+    background-image: url("images/fond1.gif");
+    background-attachment: fixed;
+    background-position: top;
+    background-size: auto;
+  }
+
+  .page-qui-sommes-nous {
+    display: none;
+  }
+
+  .da-background-container {
+    display: none;
+  }
+
+  .da-section {
+    padding-top: 110px;
+  }
+
+  .da-member {
+    flex-direction: column;
+    gap: 20px;
+    margin: 40px auto;
+    width: 90%;
+    padding: 0;
+  }
+
+  .da-portrait-mobile {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .da-content {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .da-member-name {
+    font-size: 2.2em;
+    padding-bottom: 5px;
+  }
+
+  .da-member-role {
+    font-size: 1.2em;
+    line-height: normal;
+    margin-bottom: 15px;
+  }
+
   /* Programmes */
+
+  .program-content {
+    margin-top: 150px;
+  }
+
   .program-content h1 {
     font-size: 2rem;
+    margin-bottom: 10px;
   }
 
   .intro {
@@ -1462,5 +1632,9 @@ body.realisations {
 
   .contact-text {
     font-size: 0.9em;
+  }
+
+  .footer-links {
+    justify-content: center;
   }
 }

@@ -15,6 +15,49 @@ requestAnimationFrame(raf);
 
 
 /* =========================
+   HEADER RETRACTABLE & HAMBURGER MENU
+   ========================= */
+
+const header = document.querySelector('.site-header');
+const hamburger = document.querySelector('.hamburger-btn');
+const mobileNav = document.querySelector('.mobile-nav');
+let lastScrollY = window.scrollY;
+
+// Hamburger Toggle
+if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        document.body.classList.toggle('menu-open'); // Prevent scrolling when menu is open
+    });
+
+    // Close menu when clicking a link
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        });
+    });
+}
+
+// Header Retraction
+if (header) {
+    lenis.on('scroll', ({ scroll }) => {
+        // Toggle header visibility based on scroll direction
+        if (scroll > lastScrollY && scroll > 150 && !mobileNav.classList.contains('active')) {
+            // Scrolling down & not at the very top & menu not open
+            header.classList.add('header-hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('header-hidden');
+        }
+        lastScrollY = scroll;
+    });
+}
+
+
+/* =========================
    PARALLAX GLOBAL (OPTIONNEL)
 ========================= */
 
@@ -24,9 +67,16 @@ const bgElements = document.querySelectorAll(
 
 if (bgElements.length) {
     lenis.on("scroll", ({ scroll }) => {
-        bgElements.forEach(el => {
-            el.style.transform = `translateY(${scroll * -0.05}px)`;
-        });
+        if (window.innerWidth > 480) {
+            bgElements.forEach(el => {
+                el.style.transform = `translateY(${scroll * -0.05}px)`;
+            });
+        } else {
+            // Reset transform on mobile if it was set
+            bgElements.forEach(el => {
+                el.style.transform = '';
+            });
+        }
     });
 }
 
