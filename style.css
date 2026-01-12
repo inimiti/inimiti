@@ -903,13 +903,20 @@ body.realisations {
   width: 45vh;
   height: 45vh;
   z-index: 1;
-  pointer-events: none;
+  pointer-events: auto;
+  /* Enable clicks */
+  cursor: pointer;
   background: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #ccc;
   padding: 48px;
+  transition: all 0.3s ease;
+}
+
+.central-logo:hover {
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .central-logo svg {
@@ -1047,7 +1054,7 @@ body.realisations {
 .config-btn {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ccc;
+  color: white;
   padding: 3px 25px;
   text-align: left;
   font-family: 'Space Mono', monospace;
@@ -1678,13 +1685,20 @@ body.realisations {
   }
 
   .block-title {
-    font-size: 1rem;
-    margin-bottom: 0;
+    font-size: 1.6rem;
+    margin: 7px 0 0 0;
+    text-align: center;
+    color: #ffffff;
   }
 
   .block-desc {
     display: none;
     /* Hide descriptions as requested */
+  }
+
+  .contact-form {
+    width: auto;
+    padding: 20px;
   }
 
   /* Responsive Carousel for Composer Mobile */

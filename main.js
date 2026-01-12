@@ -258,6 +258,9 @@ if (document.body.classList.contains("composer-page")) {
             if (prevBtn) prevBtn.addEventListener('click', () => updateCarousel(currentIndex - 1));
             if (nextBtn) nextBtn.addEventListener('click', () => updateCarousel(currentIndex + 1));
 
+            // Store updateCarousel for external access (randomizer)
+            groupEl.updateMobileCarousel = updateCarousel;
+
             // Initial state: activate first button if none active
             if (!groupEl.querySelector('.active')) {
                 updateCarousel(0);
@@ -286,6 +289,28 @@ if (document.body.classList.contains("composer-page")) {
             });
         });
     });
+
+    // Random choice logic
+    const centralLogo = document.querySelector('.central-logo');
+    if (centralLogo) {
+        centralLogo.addEventListener('click', () => {
+            groups.forEach(section => {
+                const groupEl = document.getElementById('group-' + section);
+                if (!groupEl) return;
+
+                const buttons = groupEl.querySelectorAll('.config-btn');
+                const randomIndex = Math.floor(Math.random() * buttons.length);
+
+                // Check if we are on mobile (carousel system active)
+                if (groupEl.updateMobileCarousel && window.innerWidth <= 480) {
+                    groupEl.updateMobileCarousel(randomIndex);
+                } else {
+                    // Desktop: just click the random button
+                    buttons[randomIndex].click();
+                }
+            });
+        });
+    }
 
 
     // Handle Name Input
