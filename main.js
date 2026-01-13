@@ -340,64 +340,75 @@ if (document.body.classList.contains("realisations")) {
         // Prevent Lenis from handling scroll on this element
         slider.setAttribute('data-lenis-prevent', 'true');
 
-        // Mouse Wheel Interaction
-        slider.addEventListener('wheel', (e) => {
-            e.preventDefault(); // Empêche le scroll vertical NATIF de la page
-            e.stopPropagation(); // Empêche la propagation aux parents (et potentiellement Lenis)
+        const isMobile = window.innerWidth <= 480;
 
-            // Map vertical scroll (deltaY) to horizontal movement
-            // Multiplier par un facteur pour ajuster la vitesse (ex: 1.5 ou 2)
-            // On ajoute au targetScroll pour avancer
-            const delta = e.deltaY || e.deltaX;
-            targetScroll += delta * 1.5;
-        }, { passive: false }); // passive: false nécessaire pour e.preventDefault()
+        if (isMobile) {
+            // Clone content for infinite loop
+            const track = slider.querySelector('.carousel-track');
+            if (track) {
+                const clones = track.innerHTML;
+                track.innerHTML += clones; // Duplicate items
+            }
+        } else {
+            // Mouse Wheel Interaction (Desktop Only)
+            slider.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const delta = e.deltaY || e.deltaX;
+                targetScroll += delta * 1.5;
+            }, { passive: false });
+        }
 
 
-        // Animation Loop for Smoothness (LERP)
+        // Animation Loop
         function animate() {
-            // 1. Constrain target to scroll bounds
             const maxScroll = slider.scrollWidth - slider.clientWidth;
-            // Allow rubberbanding effect slightly or hard clamp? Let's hard clamp for now to avoid issues.
-            let clampedTarget = Math.max(0, Math.min(targetScroll, maxScroll));
 
-            // 2. Interpolate
-            // Formula: current = current + (target - current) * factor
-            currentScroll += (clampedTarget - currentScroll) * lerpFactor;
+            if (isMobile) {
+                // Auto-scroll logic
+                targetScroll += 1; // Constant speed
+                currentScroll += (targetScroll - currentScroll) * lerpFactor;
 
-            // 3. Apply
+                // Infinite loop jump
+                if (currentScroll >= maxScroll / 2) {
+                    const jump = maxScroll / 2;
+                    targetScroll -= jump;
+                    currentScroll -= jump;
+                }
+            } else {
+                // Desktop: Constrain target to scroll bounds
+                let clampedTarget = Math.max(0, Math.min(targetScroll, maxScroll));
+                currentScroll += (clampedTarget - currentScroll) * lerpFactor;
+            }
+
+            // Apply scroll
             slider.scrollLeft = currentScroll;
-
-            // 4. Loop
             requestAnimationFrame(animate);
         }
 
-        // Start the loop for this slider
         animate();
 
-        // Touch Interaction for Mobile
-        let isTouching = false;
-        let startX = 0;
-        let startScroll = 0;
+        if (!isMobile) {
+            // Touch Interaction for Non-Mobile (if any) or Tablet
+            let isTouching = false;
+            let startX = 0;
+            let startScroll = 0;
 
-        slider.addEventListener('touchstart', (e) => {
-            isTouching = true;
-            startX = e.touches[0].pageX;
-            startScroll = targetScroll;
-        }, { passive: true });
+            slider.addEventListener('touchstart', (e) => {
+                isTouching = true;
+                startX = e.touches[0].pageX;
+                startScroll = targetScroll;
+            }, { passive: true });
 
-        slider.addEventListener('touchmove', (e) => {
-            if (!isTouching) return;
-            const x = e.touches[0].pageX;
-            const walk = (startX - x) * 1.5; // Factor to adjust swipe sensitivity
-            targetScroll = startScroll + walk;
-        }, { passive: true });
+            slider.addEventListener('touchmove', (e) => {
+                if (!isTouching) return;
+                const x = e.touches[0].pageX;
+                const walk = (startX - x) * 1.5;
+                targetScroll = startScroll + walk;
+            }, { passive: true });
 
-        slider.addEventListener('touchend', () => {
-            isTouching = false;
-        });
-
-        slider.addEventListener('touchcancel', () => {
-            isTouching = false;
-        });
+            slider.addEventListener('touchend', () => { isTouching = false; });
+            slider.addEventListener('touchcancel', () => { isTouching = false; });
+        }
     });
 }

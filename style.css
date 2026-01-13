@@ -517,6 +517,10 @@ body.menu-open {
 
 /* ---------PROGRAMMES--------- */
 
+.mobile-header-image {
+  display: none;
+}
+
 
 body.programmes {
   margin: 0;
@@ -569,20 +573,27 @@ body.programmes {
   position: relative;
 }
 
-/* Images de fond spécifiques */
-.program-slide:nth-child(1) {
-  background-image: url("images/boheme3.gif");
-  background-color: white;
-}
+/* Images de fond spécifiques - Desktop Only */
+@media screen and (min-width: 481px) {
+  .program-slide:nth-child(1) {
+    background-image: url("images/boheme3.gif");
+    background-color: white;
+  }
 
-.program-slide:nth-child(2) {
-  background-image: url("images/vin.gif");
-  background-color: white;
-}
+  .program-slide:nth-child(2) {
+    background-image: url("images/capriccio.gif");
+    background-color: white;
+  }
 
-.program-slide:nth-child(3) {
-  background-image: url("images/capriccio.gif");
-  background-color: rgb(255, 255, 255);
+  .program-slide:nth-child(3) {
+    background-image: url("images/contrebasse.gif");
+    background-color: rgb(255, 255, 255);
+  }
+
+  .program-slide:nth-child(4) {
+    background-image: url("images/vin.gif");
+    background-color: white;
+  }
 }
 
 
@@ -821,10 +832,6 @@ body.realisations {
   transition: transform 0.5s ease;
   pointer-events: none;
   /* Prevents default image drag behavior */
-}
-
-.carousel-item:hover img {
-  transform: scale(1.05);
 }
 
 /* Lightbox */
@@ -1629,17 +1636,25 @@ body.realisations {
     padding-bottom: 5px;
   }
 
-  .da-member-role {
-    font-size: 1.2em;
-    line-height: normal;
-    margin-bottom: 15px;
-  }
-
-  /* Programmes */
-
   .program-content {
-    margin-top: 150px;
+    margin-top: 0;
   }
+
+  .mobile-header-image {
+    display: block;
+    width: 100%;
+    margin-top: 50px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .mobile-header-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
 
   .program-content h1 {
     font-size: 2.8rem;
