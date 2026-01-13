@@ -207,6 +207,36 @@ body {
   transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.header-content-wrapper {
+  display: flex;
+  align-items: center;
+  width: 94%;
+}
+
+.header-logo {
+  height: 80px;
+}
+
+.header-page-title-white {
+  color: #ffffff;
+  margin-left: 30px;
+  text-transform: uppercase;
+}
+
+.header-page-title-black {
+  color: #111;
+  margin-left: 30px;
+  text-transform: uppercase;
+}
+
+.header-contact-btn {
+  margin-left: auto;
+  color: white;
+  border: 1px solid white;
+  padding: 6px 20px;
+  text-decoration: none;
+}
+
 .header-hidden {
   transform: translateY(-100%);
 }
@@ -729,6 +759,7 @@ body.realisations {
   position: relative;
   z-index: 1;
   padding: 15vh 0 10vh 0;
+  gap: 20px;
 }
 
 .project-row {
@@ -1634,6 +1665,15 @@ body.realisations {
   .da-member-name {
     font-size: 2.2em;
     padding-bottom: 5px;
+  }
+
+  .program-slide {
+    display: none;
+    background-color: #ffffff;
+  }
+
+  .program-slide.active {
+    display: flex;
   }
 
   .program-content {
