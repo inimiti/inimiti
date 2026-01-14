@@ -1,3 +1,19 @@
+
+window.addEventListener("load", () => {
+    const loader = document.querySelector(".page-loader");
+
+    if (!loader) return; // 👈 empêche le crash
+
+    setTimeout(() => {
+        loader.classList.add("hidden");
+
+        setTimeout(() => {
+            loader.remove();
+        }, 800);
+    }, 500);
+});
+
+
 /* =========================
    LENIS GLOBAL (TOUTES PAGES)
 ========================= */
