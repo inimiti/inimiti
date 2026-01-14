@@ -78,7 +78,7 @@ if (header) {
 ========================= */
 
 const bgElements = document.querySelectorAll(
-    ".page-qui-sommes-nous, .composer-container, .page-realisations, .page-contact"
+    ".page-qui-sommes-nous, .composer-container, .realisations .bg-overlay, .page-contact"
 );
 
 if (bgElements.length) {
