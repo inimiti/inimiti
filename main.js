@@ -74,7 +74,7 @@ if (header) {
 
 
 /* =========================
-   PARALLAX GLOBAL (OPTIONNEL)
+   PARALLAX GLOBAL
 ========================= */
 
 const bgElements = document.querySelectorAll(
@@ -127,80 +127,6 @@ if (daMembers.length > 0 && daBackgrounds.length > 0) {
 
     daMembers.forEach(member => {
         observer.observe(member);
-    });
-}
-
-
-/* =========================
-   PAGE PROGRAMMES — CAROUSEL HORIZONTAL
-========================= */
-
-if (document.body.classList.contains("programmes")) {
-    const slides = document.querySelectorAll(".program-slide");
-    const nextButtons = document.querySelectorAll(".btn-next");
-
-    let currentIndex = 0;
-    let isTransitioning = false; // Prevent rapid clicking and manage transition state
-
-    // Fonction pour changer de slide (suivant)
-    function goToNextSlide() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-
-        // 1. Fade out current slide
-        slides[currentIndex].classList.remove("active");
-
-        // 2. Wait for fade out to complete (1s = 1000ms)
-        setTimeout(() => {
-            // 3. Reset scroll
-            if (typeof lenis !== 'undefined') lenis.scrollTo(0, { immediate: true });
-            else window.scrollTo(0, 0);
-
-            // 4. Update index and fade in new slide
-            currentIndex = (currentIndex + 1) % slides.length;
-            slides[currentIndex].classList.add("active");
-
-            isTransitioning = false;
-        }, 750); // Wait 1s matches CSS transition
-    }
-
-    // Fonction pour changer de slide (précédent)
-    function goToPrevSlide() {
-        if (isTransitioning) return;
-        isTransitioning = true;
-
-        // 1. Fade out current slide
-        slides[currentIndex].classList.remove("active");
-
-        // 2. Wait for fade out to complete (1s = 1000ms)
-        setTimeout(() => {
-            // 3. Reset scroll
-            if (typeof lenis !== 'undefined') lenis.scrollTo(0, { immediate: true });
-            else window.scrollTo(0, 0);
-
-            // 4. Update index and fade in new slide
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            slides[currentIndex].classList.add("active");
-
-            isTransitioning = false;
-        }, 750);
-    }
-
-    // Ajoute l'écouteur d'événement sur chaque bouton "programme suivant"
-    nextButtons.forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            goToNextSlide();
-        });
-    });
-
-    // Ajoute l'écouteur pour "programme précédent"
-    const prevButtons = document.querySelectorAll(".btn-prev");
-    prevButtons.forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.preventDefault();
-            goToPrevSlide();
-        });
     });
 }
 
@@ -356,7 +282,7 @@ if (document.body.classList.contains("realisations")) {
         // Prevent Lenis from handling scroll on this element
         slider.setAttribute('data-lenis-prevent', 'true');
 
-        const isMobile = window.innerWidth <= 480;
+        const isMobile = window.innerWidth <= 180;
 
         if (isMobile) {
             // Clone content for infinite loop

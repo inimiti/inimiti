@@ -451,6 +451,14 @@ body.menu-open {
   z-index: 10;
 }
 
+.container-b {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 50px 0;
+  z-index: 10;
+}
+
 .title {
   font-family: "Space Grotesk", sans-serif;
   color: white;
@@ -1462,7 +1470,7 @@ body.realisations {
 
   /* Programmes */
   .program-content {
-    padding: 3rem 5rem;
+    padding: 3rem 4rem;
   }
 
   .program-content h1 {
@@ -1577,7 +1585,7 @@ body.realisations {
     gap: 2rem;
   }
 
-  .container-a {
+  .container-b {
     align-items: center;
   }
 
