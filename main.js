@@ -268,6 +268,96 @@ if (document.body.classList.contains("composer-page")) {
 }
 
 /* =========================
+   PAGE PROGRAMMES — NAVIGATION & MAGNETIC SCROLL
+========================= */
+if (document.body.classList.contains("programmes")) {
+    const slides = document.querySelectorAll('.program-slide');
+    let currentSlideIndex = 0;
+
+    // Find initial active slide
+    slides.forEach((slide, index) => {
+        if (slide.classList.contains('active')) {
+            currentSlideIndex = index;
+        }
+    });
+
+    // Function to navigate to a specific slide
+    function goToSlide(index) {
+        // Remove active class from all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+
+        // Add active class to target slide
+        if (slides[index]) {
+            slides[index].classList.add('active');
+            currentSlideIndex = index;
+
+            // Scroll to top of the slide smoothly
+            lenis.scrollTo(slides[index], {
+                offset: 0,
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+            });
+        }
+    }
+
+    // Handle all button clicks
+    slides.forEach((slide, slideIndex) => {
+        const prevBtn = slide.querySelector('.btn-prev');
+        const nextBtn = slide.querySelector('.btn-next');
+        const contactBtn = slide.querySelector('.btn-contact');
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                const prevIndex = slideIndex > 0 ? slideIndex - 1 : slides.length - 1;
+                goToSlide(prevIndex);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const nextIndex = slideIndex < slides.length - 1 ? slideIndex + 1 : 0;
+                goToSlide(nextIndex);
+            });
+        }
+
+        if (contactBtn) {
+            contactBtn.addEventListener('click', () => {
+                window.location.href = 'contact.html';
+            });
+        }
+    });
+
+    // Magnetic scroll effect - snap to nearest slide
+    let scrollTimeout;
+    lenis.on('scroll', ({ scroll }) => {
+        clearTimeout(scrollTimeout);
+
+        scrollTimeout = setTimeout(() => {
+            // Find the slide closest to the center of viewport
+            const viewportCenter = scroll + window.innerHeight / 2;
+            let closestSlide = 0;
+            let closestDistance = Infinity;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideCenter = slideTop + slide.offsetHeight / 2;
+                const distance = Math.abs(viewportCenter - slideCenter);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestSlide = index;
+                }
+            });
+
+            // Only snap if we're not already on the closest slide
+            if (closestSlide !== currentSlideIndex) {
+                goToSlide(closestSlide);
+            }
+        }, 150); // Wait 150ms after scroll stops
+    });
+}
+
+/* =========================
    PAGE REALISATIONS
 ========================= */
 if (document.body.classList.contains("realisations")) {
