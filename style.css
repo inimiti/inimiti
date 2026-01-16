@@ -14,7 +14,7 @@ p {
 .page-loader {
   position: fixed;
   inset: 0;
-  background: #0b0b0b;
+  background: #141414;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -477,7 +477,7 @@ body.menu-open {
   font-size: 2em;
   font-weight: 400;
   line-height: 1.6em;
-  margin: 5rem 0;
+  margin: 9rem 0;
 }
 
 .team-section {
@@ -1141,7 +1141,6 @@ body.realisations {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 2.2rem;
   color: white;
-  text-transform: uppercase;
   margin-top: 0;
   margin-bottom: 8px;
   font-weight: 600;
@@ -1384,6 +1383,12 @@ body.realisations {
   color: black;
 }
 
+.contact-direct {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
 /* --------- RESPONSIVE 1600PX --------- */
 @media screen and (max-width: 1600px) {
 
@@ -1401,7 +1406,6 @@ body.realisations {
 
   .composer-container {
     height: auto;
-    padding-top: 150px;
     padding-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -1854,10 +1858,6 @@ body.realisations {
 
   /* Composez votre événement */
 
-  .composer-container {
-    padding-top: 100px;
-  }
-
   .logo-floating-text {
     display: none;
   }
@@ -1947,6 +1947,11 @@ body.realisations {
 
   .contact-text {
     font-size: 0.9em;
+  }
+
+  .contact-direct {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .footer-links {

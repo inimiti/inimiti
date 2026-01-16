@@ -145,6 +145,7 @@ if (document.body.classList.contains("composer-page")) {
 
     const summaryEl = document.getElementById('dynamic-text-bottom');
     const topText = document.getElementById('dynamic-text-top');
+    const eventInput = document.getElementById('event-name');
     const nameInput = document.getElementById('input-client-name');
 
     // Update bottom summary
@@ -255,12 +256,16 @@ if (document.body.classList.contains("composer-page")) {
     }
 
 
-    // Handle Name Input
-    if (nameInput && topText) {
-        nameInput.addEventListener('input', (e) => {
-            const val = e.target.value;
-            topText.textContent = val ? "évènement sur-mesure de " + val : "évènement sur-mesure de ...";
-        });
+    // Handle Name Input & Event Name Input
+    if (topText) {
+        const updateTopText = () => {
+            const eventVal = eventInput && eventInput.value ? eventInput.value : "évènement sur-mesure";
+            const nameVal = nameInput && nameInput.value ? nameInput.value : "...";
+            topText.textContent = `${eventVal} de ${nameVal}`;
+        };
+
+        if (nameInput) nameInput.addEventListener('input', updateTopText);
+        if (eventInput) eventInput.addEventListener('input', updateTopText);
     }
 
     // Initialize display
@@ -327,34 +332,7 @@ if (document.body.classList.contains("programmes")) {
         }
     });
 
-    // Magnetic scroll effect - snap to nearest slide
-    let scrollTimeout;
-    lenis.on('scroll', ({ scroll }) => {
-        clearTimeout(scrollTimeout);
 
-        scrollTimeout = setTimeout(() => {
-            // Find the slide closest to the center of viewport
-            const viewportCenter = scroll + window.innerHeight / 2;
-            let closestSlide = 0;
-            let closestDistance = Infinity;
-
-            slides.forEach((slide, index) => {
-                const slideTop = slide.offsetTop;
-                const slideCenter = slideTop + slide.offsetHeight / 2;
-                const distance = Math.abs(viewportCenter - slideCenter);
-
-                if (distance < closestDistance) {
-                    closestDistance = distance;
-                    closestSlide = index;
-                }
-            });
-
-            // Only snap if we're not already on the closest slide
-            if (closestSlide !== currentSlideIndex) {
-                goToSlide(closestSlide);
-            }
-        }, 150); // Wait 150ms after scroll stops
-    });
 }
 
 /* =========================
