@@ -480,10 +480,16 @@ body.menu-open {
   margin: 9rem 0;
 }
 
+.separator-line {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 40px 0;
+  width: 100%;
+}
+
 .team-section {
   display: flex;
   gap: 40px;
-  margin-bottom: 80px;
 }
 
 .team-member {
@@ -520,7 +526,7 @@ body.menu-open {
 .logo-section {
   display: flex;
   gap: 15rem;
-  margin-top: 100px;
+  margin-top: 55px;
 }
 
 .logo-member {
