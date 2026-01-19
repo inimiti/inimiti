@@ -1,0 +1,14 @@
+# Serve index.html automatiquement
+DirectoryIndex index.html
+
+# Activer le module de réécriture
+RewriteEngine On
+
+# Supprimer .html des URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [L]
+
+# Rediriger index.html vers la racine
+RewriteCond %{THE_REQUEST} /index\.html
+RewriteRule ^index\.html$ / [R=301,L]
