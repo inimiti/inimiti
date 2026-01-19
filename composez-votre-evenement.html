@@ -406,11 +406,20 @@
         <div class="config-column right-column">
             <div class="config-block info-block">
                 <h2 class="block-title">Vos informations</h2>
-                <form class="contact-form">
-                    <input type="text" id="input-client-name" placeholder="Nom et Prénom" class="form-input">
-                    <input type="text" id="event-name" placeholder="Nom de l'événement" class="form-input">
-                    <input type="email" placeholder="Email" class="form-input">
-                    <textarea placeholder="Décrivez votre événement" class="form-textarea"></textarea>
+                <form class="contact-form" action="https://formsubmit.co/inimitigroupe@gmail.com" method="POST">
+                    <!-- Hidden fields for dynamic selection -->
+                    <input type="hidden" name="_subject" value="Nouvelle demande de composition d'événement">
+                    <input type="hidden" id="hidden-formation" name="formation" value="...">
+                    <input type="hidden" id="hidden-duree" name="duree" value="...">
+                    <input type="hidden" id="hidden-repertoire" name="repertoire" value="...">
+
+                    <input type="text" id="input-client-name" name="nom" placeholder="Nom et Prénom" class="form-input"
+                        required>
+                    <input type="text" id="event-name" name="evenement" placeholder="Nom de l'événement"
+                        class="form-input" required>
+                    <input type="email" name="email" placeholder="Email" class="form-input" required>
+                    <textarea name="message" placeholder="Décrivez votre événement" class="form-textarea"
+                        required></textarea>
                     <button type="submit" class="submit-btn" style="margin-top: 10px;">Envoyer mon
                         événement</button>
                 </form>

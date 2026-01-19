@@ -148,11 +148,21 @@ if (document.body.classList.contains("composer-page")) {
     const eventInput = document.getElementById('event-name');
     const nameInput = document.getElementById('input-client-name');
 
+    // Hidden inputs for form submission
+    const hiddenFormation = document.getElementById('hidden-formation');
+    const hiddenDuree = document.getElementById('hidden-duree');
+    const hiddenRepertoire = document.getElementById('hidden-repertoire');
+
     // Update bottom summary
     function updateSummaryDisplay() {
         if (summaryEl) {
             summaryEl.textContent = `FORMATION : ${currentSelection.formation}   DUREE : ${currentSelection.duree}   REPERTOIRE : ${currentSelection.repertoire}`;
         }
+
+        // Sync hidden inputs
+        if (hiddenFormation) hiddenFormation.value = currentSelection.formation;
+        if (hiddenDuree) hiddenDuree.value = currentSelection.duree;
+        if (hiddenRepertoire) hiddenRepertoire.value = currentSelection.repertoire;
     }
 
     // Handle button selections

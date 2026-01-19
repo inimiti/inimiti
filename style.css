@@ -90,6 +90,7 @@ body {
 
 .footer {
   display: flex;
+  position: relative;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
@@ -308,6 +309,12 @@ body {
   border: 1px solid white;
   padding: 6px 20px;
   text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.header-contact-btn:hover {
+  background-color: rgb(255, 255, 255);
+  color: black;
 }
 
 .header-hidden {

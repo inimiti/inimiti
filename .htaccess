@@ -1,14 +1,32 @@
-# Serve index.html automatiquement
+# -------------------------------
+# 1️⃣ Serve index.html automatiquement
+# -------------------------------
 DirectoryIndex index.html
 
-# Activer le module de réécriture
+# -------------------------------
+# 2️⃣ Activer la réécriture d'URL
+# -------------------------------
 RewriteEngine On
 
-# Supprimer .html des URLs
+# -------------------------------
+# 3️⃣ Supprimer les extensions .html pour toutes les pages et sous-dossiers
+# -------------------------------
+# Si ce n'est pas un dossier
 RewriteCond %{REQUEST_FILENAME} !-d
+# Si le fichier avec .html existe
 RewriteCond %{REQUEST_FILENAME}\.html -f
+# Réécriture interne : /page → /page.html
 RewriteRule ^(.*)$ $1.html [L]
 
-# Rediriger index.html vers la racine
+# -------------------------------
+# 4️⃣ Rediriger index.html vers la racine
+# -------------------------------
 RewriteCond %{THE_REQUEST} /index\.html
 RewriteRule ^index\.html$ / [R=301,L]
+
+# -------------------------------
+# 5️⃣ (Optionnel) Forcer www → non-www ou https
+# -------------------------------
+# Exemple pour forcer https :
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
