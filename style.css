@@ -1865,8 +1865,34 @@ body.realisations {
     font-size: 1.8rem;
   }
 
+  .project-row {
+    margin-bottom: 2rem;
+  }
+
+  .project-info {
+    padding: 1.5rem;
+  }
+
   .project-carousel {
-    height: 30vh;
+    height: 22vh;
+    max-height: 22vh;
+  }
+
+  .carousel-track {
+    height: 22vh;
+    max-height: 22vh;
+  }
+
+  .carousel-item {
+    height: 22vh;
+    max-height: 22vh;
+  }
+
+  .carousel-item img {
+    height: 22vh;
+    max-height: 22vh;
+    width: auto;
+    object-fit: cover;
   }
 
   /* Composez votre événement */
