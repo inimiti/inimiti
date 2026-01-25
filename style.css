@@ -1087,7 +1087,7 @@ body.realisations {
 .logo-floating-text {
   position: absolute;
   font-family: 'Space Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.9);
   white-space: nowrap;
   z-index: 20;
